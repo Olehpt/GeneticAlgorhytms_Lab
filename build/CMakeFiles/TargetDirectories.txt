@@ -1,0 +1,3 @@
+C:/Users/User/Desktop/GA_lab/build/CMakeFiles/GA_lab.dir
+C:/Users/User/Desktop/GA_lab/build/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/GA_lab/build/CMakeFiles/rebuild_cache.dir
