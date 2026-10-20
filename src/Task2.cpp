@@ -8,7 +8,7 @@ gapp::FitnessVector T2::invoke(
         c.chromosome.end()
     );
 
-    int penalty = calculate_penalty(chromosome, lessons);
+    int penalty = calculate_penalty(chromosome, s);
 
     return { -static_cast<double>(penalty) };
 }
@@ -18,8 +18,11 @@ void task2_solve() {
     const double crossoverRate = 0.8;
     const double mutationRate = 0.1;
 
+    _Schedule data = { lessons, rooms, groups, subjects, teachers };
+    Schedule s(data);
+
     const int maxGene =
-        DAYS * TIMESLOTS * static_cast<int>(rooms.size()) - 1;
+        s.days * s.timeslots * static_cast<int>(rooms.size()) - 1;
 
     gapp::IntegerGA ga(
         populationSize,
@@ -28,7 +31,7 @@ void task2_solve() {
     );
 
     auto solutions = ga.solve(
-        T2{},
+        T2{s},
         gapp::Bounds{
             gapp::IntegerGene{0},
             static_cast<gapp::IntegerGene>(maxGene)
@@ -38,18 +41,4 @@ void task2_solve() {
     const auto& best = solutions.front().chromosome;
 
     std::vector<int> chromosome(best.begin(), best.end());
-
-    std::cout << "Best penalty: "
-        << calculate_penalty(chromosome, lessons)
-        << "\n\n";
-
-    for (size_t i = 0; i < chromosome.size(); ++i) {
-        record r = decode(chromosome[i]);
-		lesson l = lessons[i];
-        std::cout << "Lesson | group= " << l.group
-            << ": day=" << r.day
-            << ", timeslot=" << r.timeslot
-            << ", room=" << rooms[r.roomid].id
-            << '\n';
-    }
 }

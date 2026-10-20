@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <string>
+#include <map>
+#include <array>
 
 enum class roomType {
 	Lecture,
@@ -7,65 +10,40 @@ enum class roomType {
 	Regular
 };
 
-enum class subject {
-	Math,
-	Physics,
-	English,
-	Programming
-};
-
 struct lesson {
-    int group;
-    int teacher;
-    subject s;
-    roomType requiredRoom;
+	int group_id;
+	int teacher_id;
+	int subject_id;
+	roomType requiredRoom;
 };
 
 struct room {
-	int id;
+	std::string name;
 	roomType type;
 };
 
 struct record {
-    int roomid;
-    int timeslot;
-    int day;
+	int room_id;
+	int timeslot;
+	int day;
 };
 
-int codegen(int d, int t, int r);
-record decode(int code);
-
-int calculate_penalty(const std::vector<int>& c, const std::vector<lesson>& l);
-
-//constants & data
-
-const int DAYS = 5;
-const int TIMESLOTS = 5;
-
-const int NUM_ROOMS = 8; //?
-const int NUM_LESSONS = 8;
-const int NUM_GROUPS = 4;
-const int NUM_TEACHERS = 8;
-
-inline std::vector<room> rooms = {
-	{0, roomType::Lecture},
-	{1, roomType::Lecture},
-	{2, roomType::Computer},
-	{3, roomType::Computer},
-	{4, roomType::Regular},
-	{5, roomType::Regular},
-	{6, roomType::Regular},
-	{7, roomType::Regular}
+struct _Schedule {
+	const std::vector<lesson> lessons;
+	const std::vector<room>& rooms;
+	const std::vector<std::string>& groups, & subjects, & teachers;
 };
 
+class Schedule {
+	_Schedule data;
+	int lessons_size;
+public:
+	static const int days = 5, timeslots = 5;
+	Schedule(_Schedule data);
+	int get_size();
 
-inline std::vector<lesson> lessons = {
-	{0, 0, subject::Math, roomType::Lecture},
-	{0, 1, subject::Physics, roomType::Lecture},
-	{1, 2, subject::English, roomType::Regular},
-	{1, 3, subject::Programming, roomType::Computer},
-	{2, 4, subject::Math, roomType::Lecture},
-	{2, 5, subject::Physics, roomType::Lecture},
-	{3, 6, subject::English, roomType::Regular},
-	{3, 7, subject::Programming, roomType::Computer}
+	int codegen(int d, int t, int r);
+	record decode(int code);
+
+	friend int calculate_penalty(const std::vector<int>& c, Schedule& s);
 };
