@@ -23,7 +23,7 @@ record Schedule::decode(int code) {
 int calculate_penalty(const std::vector<int>& c, Schedule& s) {
 	if (c.size() != s.data.lessons.size()) {
 		std::cout << "error occured\n";
-		return -1;
+		return 0;
 	}
 	int penalty = 0;
 	const int hard_v = 1000;

@@ -31,7 +31,7 @@ inline const std::vector<lesson> lessons = { //group, teacher, subject, roomtype
 	{3, 3, 3, roomType::Lecture},
 	{0, 0, 4, roomType::Computer},
 	{1, 1, 5, roomType::Regular},
-	{2, 2, 6, roomType::Lecture},
+	{2, 2, 5, roomType::Lecture},
 	{3, 3, 1, roomType::Computer},
 	{0, 0, 2, roomType::Regular},
 	{1, 1, 4, roomType::Lecture}

@@ -29,7 +29,7 @@ struct record {
 };
 
 struct _Schedule {
-	const std::vector<lesson> lessons;
+	const std::vector<lesson>& lessons;
 	const std::vector<room>& rooms;
 	const std::vector<std::string>& groups, & subjects, & teachers;
 };
