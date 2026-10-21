@@ -14,3 +14,12 @@ public:
 };
 
 void task2_solve();
+
+struct geneOutput {
+	record r;
+	lesson l;
+};
+
+std::string roomTypeConvert(int id);
+void printOutput(std::vector<std::vector<std::vector<geneOutput>>>& table);
+void printOutputAsArray(std::vector<std::vector<std::vector<geneOutput>>>& table);

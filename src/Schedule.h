@@ -22,7 +22,7 @@ struct room {
 	roomType type;
 };
 
-struct record {
+struct record { //gene
 	int room_id;
 	int timeslot;
 	int day;
@@ -35,9 +35,9 @@ struct _Schedule {
 };
 
 class Schedule {
+public:
 	_Schedule data;
 	int lessons_size;
-public:
 	static const int days = 5, timeslots = 5;
 	Schedule(_Schedule data);
 	int get_size();
