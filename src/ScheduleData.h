@@ -44,3 +44,5 @@ inline const std::vector<room> rooms = {
 	{"Room 104", roomType::Lecture},
 	{"Room 105", roomType::Computer}
 };
+
+inline const _Schedule data(lessons, rooms, groups, subjects, teachers);

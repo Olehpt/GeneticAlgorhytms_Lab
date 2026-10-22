@@ -16,7 +16,7 @@ set(gapp_DIR
 
 find_package(gapp CONFIG REQUIRED)
 
-add_executable (GA_lab "GA_lab.cpp" "GA_lab.h" "src/Task1.cpp" "src/Task1.h" "src/Task2.h" "src/Task2.cpp" "src/Schedule.cpp" "src/Schedule.h" "src/ScheduleData.h")
+add_executable (GA_lab "GA_lab.cpp" "GA_lab.h" "src/Task1.cpp" "src/Task1.h" "src/Task2.h" "src/Task2.cpp" "src/Schedule.cpp" "src/Schedule.h" "src/ScheduleData.h" "other/Gradient.h" "other/Gradient.cpp" "other/GreedySchedule.h" "other/GreedySchedule.cpp")
 
 target_link_libraries(GA_lab PRIVATE gapp::gapp)
 
