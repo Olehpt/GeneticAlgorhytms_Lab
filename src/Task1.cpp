@@ -11,10 +11,10 @@ gapp::FitnessVector T1::invoke(const gapp::Candidate<gapp::RealGene>& c) const {
 	return { -1 * func(x, y) };
 }
 
-void task1_solve() {
-	const int populationSize = 100;
-	const double crossoverRate = 0.8;
-	const double mutationRate = 0.1;
+void task1_solve(int p, double c, double m, int generations) {
+	const int populationSize = p;
+	const double crossoverRate = c;
+	const double mutationRate = m;
 
 	gapp::RCGA ga(
 		populationSize,
@@ -24,10 +24,11 @@ void task1_solve() {
 
 	auto solutions = ga.solve(
 		T1{},
-		gapp::Bounds{ -5.0, 5.0 }
+		gapp::Bounds{ -5.0, 5.0 },
+		generations
 	);
 
 	const auto& best = solutions.front().chromosome;
 
-	std::cout << "Best solution: x = " << best[0] << ", y = " << best[1] << std::endl;
+	std::cout << "Best solution:\nx = " << best[0] << ", y = " << best[1] << "\n" << "f = " << func(best[0], best[1]) << "\n";
 }

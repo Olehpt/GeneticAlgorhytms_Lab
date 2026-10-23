@@ -13,10 +13,10 @@ gapp::FitnessVector T2::invoke(
     return { -static_cast<double>(penalty) };
 }
 
-void task2_solve() {
-    const int populationSize = 100;
-    const double crossoverRate = 0.8;
-    const double mutationRate = 0.1;
+void task2_solve(int p, double c, double m, int generations) {
+    const int populationSize = p;
+    const double crossoverRate = c;
+    const double mutationRate = m;
 
     _Schedule data = { lessons, rooms, groups, subjects, teachers };
     Schedule s(data);
@@ -35,7 +35,8 @@ void task2_solve() {
         gapp::Bounds{
             gapp::IntegerGene{0},
             static_cast<gapp::IntegerGene>(maxGene)
-        }
+        },
+        generations
     );
 
     const auto& best = solutions.front().chromosome;

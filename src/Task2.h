@@ -3,7 +3,7 @@
 #include "Schedule.h"
 #include "ScheduleData.h"
 
-#define TEMPCONST 10
+#define TEMPCONST 35
 
 class T2 : public gapp::FitnessFunction<gapp::IntegerGene, TEMPCONST> {
 	gapp::FitnessVector invoke(const gapp::Candidate<gapp::IntegerGene>& c) const override;
@@ -13,7 +13,7 @@ public:
 	explicit T2(Schedule& sch) : s(sch) {}
 };
 
-void task2_solve();
+void task2_solve(int p, double c, double m, int generations);
 
 struct geneOutput {
 	record r;

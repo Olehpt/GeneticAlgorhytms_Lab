@@ -1,5 +1,5 @@
 #include "GreedySchedule.h"
-
+#include <iostream>
 
 std::vector<record> greedy_schedule(Schedule& s) {
     std::vector<record> result;
@@ -7,9 +7,9 @@ std::vector<record> greedy_schedule(Schedule& s) {
 
     if (s.data.rooms.empty())
         throw std::invalid_argument("No rooms");
-
+    int bestPenalty;
     for (size_t i = 0; i < s.data.lessons.size(); ++i) {
-        int bestPenalty = std::numeric_limits<int>::max();
+        bestPenalty = std::numeric_limits<int>::max();
         record bestRecord{};
         bool found = false;
 
@@ -46,9 +46,9 @@ std::vector<record> greedy_schedule(Schedule& s) {
             throw std::runtime_error(
                 "No compatible room for a lesson"
             );
-
         result.push_back(bestRecord);
     }
+    std::cout << bestPenalty << "\n";
 
     return result;
 }
