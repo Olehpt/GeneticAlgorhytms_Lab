@@ -32,7 +32,17 @@ inline const std::vector<lesson> lessons = { //group, teacher, subject, roomtype
     {2, 0, 6, roomType::Lecture},
     {3, 1, 7, roomType::Computer},
     {0, 2, 8, roomType::Regular},
-    {1, 3, 9, roomType::Lecture}
+    {1, 3, 9, roomType::Lecture},
+    {2, 4, 0, roomType::Computer},
+    {3, 5, 1, roomType::Regular},
+    {0, 1, 2, roomType::Lecture},
+    {1, 2, 3, roomType::Computer},
+    {2, 3, 4, roomType::Regular},
+    {3, 4, 5, roomType::Lecture},
+    {0, 5, 6, roomType::Computer},
+    {1, 0, 7, roomType::Regular},
+    {2, 1, 8, roomType::Lecture},
+    {3, 2, 9, roomType::Computer}
 };
 
 inline const _Schedule data(lessons, rooms, groups, subjects, teachers);

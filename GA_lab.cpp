@@ -20,10 +20,12 @@ double get_time(F&& function, Args&&... args)
 }
 
 void main()
-{
-	Schedule s(data);
-	
-	task2_solve(100, 0.8, 0.1, 50);
+{	
+	//task2_solve(100, 0.8, 0.1, 200);
+	//task2_metric(100, 0.8, 0.1, 200, "output.csv");
+
+	task1_solve(100, 0.8, 0.1, 100);
+	task1_metric(100, 0.8, 0.1, 100, "output_.csv");
 
 	return;
 }

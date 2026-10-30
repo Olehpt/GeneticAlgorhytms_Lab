@@ -1,6 +1,7 @@
 #include "Task2.h"
 #include <iostream>
 #include "ScheduleOutput.h"
+#include <fstream>
 
 gapp::FitnessVector T2::invoke(
     const gapp::Candidate<gapp::IntegerGene>& c) const {
@@ -40,6 +41,7 @@ void task2_solve(int p, double c, double m, int generations) {
         generations
     );
 
+
     const auto& best = solutions.front().chromosome;
 
     std::vector<int> chromosome(best.begin(), best.end());
@@ -61,5 +63,56 @@ void task2_solve(int p, double c, double m, int generations) {
     //printOutputAsArray(table);
 
     std::cout << "\nTotal penalty: " << calculate_penalty(chromosome, s) << '\n';
+}
+
+void task2_metric(int p, double c, double m, int generations, const std::string& fileoutput) {
+    _Schedule data = { lessons, rooms, groups, subjects, teachers };
+    Schedule s(data);
+
+    const int maxGene = s.days * s.timeslots * static_cast<int>(rooms.size()) - 1;
+
+    gapp::IntegerGA ga(
+        p,
+        gapp::crossover::integer::TwoPoint{ c },
+        gapp::mutation::integer::Uniform{ m }
+    );
+
+    ga.track(
+        gapp::metrics::FitnessMax{},
+        gapp::metrics::FitnessMean{}
+    );
+
+    auto solutions = ga.solve(
+        T2{ s },
+        gapp::Bounds{
+            gapp::IntegerGene{0},
+            static_cast<gapp::IntegerGene>(maxGene)
+        },
+        generations
+    );
+
+    auto bestFitness =
+        ga.get_metric<gapp::metrics::FitnessMax>();
+
+    auto meanFitness =
+        ga.get_metric<gapp::metrics::FitnessMean>();
+
+    std::ofstream file(fileoutput);
+
+    if (!file.is_open()) {
+        std::cerr << "Failed to open output file\n";
+        return;
+    }
+
+    file << "Generation,BestPenalty,MeanPenalty\n";
+
+    for (size_t i = 0; i < bestFitness.size(); ++i) {
+        double bestPenalty = -bestFitness[i][0];
+        double meanPenalty = -meanFitness[i][0];
+
+        file << i << ','
+            << bestPenalty << ','
+            << meanPenalty << '\n';
+    }
 }
 

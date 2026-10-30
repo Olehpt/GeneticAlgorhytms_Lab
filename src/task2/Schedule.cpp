@@ -86,5 +86,8 @@ int calculate_penalty(const std::vector<int>& c, Schedule& s) {
 			if (count > 3) penalty += soft_v * (count - 3);
 		}
 	}
+	if (penalty > 592000) {
+		std::cerr << "Unexpected penalty: " << penalty << '\n';
+	}
 	return penalty;
 }

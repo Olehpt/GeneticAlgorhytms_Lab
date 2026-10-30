@@ -9,3 +9,4 @@ class T1 : public gapp::FitnessFunction<gapp::RealGene, 2> {
 };
 
 void task1_solve(int p, double c, double m, int generations);
+void task1_metric(int p, double c, double m, int generations, const std::string& fileoutput);
