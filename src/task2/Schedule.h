@@ -37,10 +37,8 @@ struct _Schedule {
 class Schedule {
 public:
 	_Schedule data;
-	int lessons_size;
 	static const int days = 5, timeslots = 5;
 	Schedule(_Schedule data);
-	int get_size();
 
 	int codegen(int d, int t, int r);
 	record decode(int code);

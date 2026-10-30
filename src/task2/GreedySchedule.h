@@ -1,7 +1,8 @@
 #pragma once
-#include "../src/Schedule.h"
-#include "../src/Task2.h"
-#include "stdexcept"
+#include "Schedule.h"
+#include "Task2.h"
+#include <stdexcept>
+#include "ScheduleOutput.h"
 
 std::vector<record> greedy_schedule(Schedule& s);
 

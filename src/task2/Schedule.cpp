@@ -1,13 +1,8 @@
 #include "Schedule.h"
 #include <iostream>
 
-Schedule::Schedule(_Schedule sch) : data(sch) {
-	lessons_size = this->data.lessons.size();
-};
+Schedule::Schedule(_Schedule sch) : data(sch) {};
 
-int Schedule::get_size() {
-	return lessons_size;
-}
 
 int Schedule::codegen(int d, int t, int r) {
 	return (t + d * timeslots) * data.rooms.size() + r;
